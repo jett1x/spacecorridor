@@ -88,3 +88,4 @@ void update_screen(SDL_Renderer *renderer);
 void pause(int time);
 
 #endif
+ 
