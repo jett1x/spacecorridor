@@ -21,3 +21,4 @@ doc: $(PROG)
 clean:
 	del /f /q *.o *~ $(PROG)
 	rd /s /q latex html
+ 
