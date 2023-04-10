@@ -1,7 +1,7 @@
 /**
  * \file main.c
  * \brief Programme principal initial du niveau 0
- * \author Mathieu Constant
+ * \author Mathieu Constant, Denys Shcherba, Ivan Osadtsiv
  * \version 1.0
  * \date 18 mars 2020
  */
