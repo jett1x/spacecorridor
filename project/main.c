@@ -57,25 +57,16 @@
 #define INITIAL_SPEED 2
 
 
-
-
 /**
- * \brief           Représentation pour stocker les textures nécessaires à l'affichage graphique
+ * \brief           Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
 */
 
-struct textures_s
+typedef struct textures_s
 {
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
     SDL_Texture* ship;
-};
-
-
-
-/**
- * \brief           Type qui correspond aux textures du jeu
-*/
-
-typedef struct textures_s textures_t;
+    SDL_Texture* line;
+}textures_t;
 
 /**
  * \brief           Type de sprite
@@ -89,21 +80,15 @@ typedef struct sprite_s
 } sprite_t;
 
 /**
- * \brief           Représentation du monde du jeu
-*/
-
-struct world_s
-{
-    sprite_t * ship;
-    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
-
-};
-
-/**
  * \brief           Type qui correspond aux données du monde
  */
 
-typedef struct world_s world_t;
+typedef struct world_s
+{
+    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
+    sprite_t * ship;
+    sprite_t * line;
+}world_t;
 
 
 void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
@@ -132,11 +117,12 @@ void init_data(world_t * world)
     //on n'est pas à la fin du jeu
 
     world->gameover = 0;
+
     world->ship = malloc(sizeof(sprite_t));
-    world->ship->x = (SCREEN_WIDTH - SHIP_SIZE)/2;
-    world->ship->y = SCREEN_HEIGHT - SHIP_SIZE*2;
-    world->ship->h = SHIP_SIZE;
-    world->ship->w = SHIP_SIZE;
+    init_sprite(world->ship, (SCREEN_WIDTH - SHIP_SIZE)/2, SCREEN_HEIGHT - SHIP_SIZE*2, SHIP_SIZE, SHIP_SIZE);
+
+    world->line = malloc(sizeof(sprite_t));
+    init_sprite(world->line, 0, FINISH_LINE_HEIGHT, SCREEN_WIDTH, 8);
 }
 
 
@@ -222,6 +208,18 @@ void handle_events(SDL_Event *event,world_t *world)
     }
 }
 
+/**
+ * \brief           La fonction initialise les textures nécessaires à l'affichage graphique du jeu
+ * \param screen    la surface correspondant à l'écran de jeu
+ * \param textures  les textures du jeu
+*/
+
+void  init_textures(SDL_Renderer *renderer, textures_t *textures)
+{
+    textures->background = load_image( "ressources/space-background.bmp", renderer);
+    textures->ship = load_image( "ressources/spaceship.bmp", renderer);
+    textures->line = load_image( "ressources/finish_line.bmp", renderer);
+}
 
 /**
  * \brief           La fonction nettoie les textures
@@ -232,23 +230,8 @@ void clean_textures(textures_t *textures)
 {
     clean_texture(textures->background);
     clean_texture(textures->ship);
+    clean_texture(textures->line);
 }
-
-
-
-/**
- * \brief           La fonction initialise les textures nécessaires à l'affichage graphique du jeu
- * \param screen    la surface correspondant à l'écran de jeu
- * \param textures  les textures du jeu
-*/
-
-void  init_textures(SDL_Renderer *renderer, textures_t *textures)
-{
-    textures->background = load_image( "ressources/space-background.bmp",renderer);
-    textures->ship = load_image( "ressources/spaceship.bmp",renderer);
-    
-}
-
 
 /**
  * \brief           La fonction applique la texture du fond sur le renderer lié à l'écran de jeu
@@ -263,15 +246,14 @@ void apply_background(SDL_Renderer *renderer, SDL_Texture *texture)
     }
 }
 
-/// @brief 
-/// @param renderer 
-/// @param texture 
-/// @param sprite 
+/// @brief          Applies sprint on a screen
+/// @param renderer renderer
+/// @param texture  texture
+/// @param sprite   sprite to apply
 void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
 {
     apply_texture(texture, renderer, sprite->x, sprite->y);
 }
-
 
 /**
  * \brief           La fonction rafraichit l'écran en fonction de l'état des données du monde
@@ -288,6 +270,8 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     apply_background(renderer, textures->background);
     //application de vaisseau texture dans le renderer
     apply_sprite(renderer, textures->ship, world->ship);
+    //application de ligne texture dans le renderer
+    apply_sprite(renderer, textures->line, world->line);
     // on met à jour l'écran
     update_screen(renderer);
 }
