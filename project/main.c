@@ -70,12 +70,23 @@ struct textures_s
 };
 
 
+
 /**
  * \brief           Type qui correspond aux textures du jeu
 */
 
 typedef struct textures_s textures_t;
 
+/**
+ * \brief           Type de sprite
+*/
+typedef struct sprite_s
+{
+    int x;
+    int y;
+    int h;
+    int w;
+} sprite_t;
 
 /**
  * \brief           Représentation du monde du jeu
@@ -95,25 +106,6 @@ struct world_s
 typedef struct world_s world_t;
 
 
-struct sprite_s
-{
-    int x;
-    int y;
-    int h;
-    int w;
-};
-/**
- * \brief           Type de sprite
-*/
-typedef struct sprite_s sprite_t;
-
-
-/**
- * \brief           La fonction initialise les données du monde du jeu
- * \param world     les données du monde
- */
-
-
 void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
 {
     sprite->x = x;
@@ -121,6 +113,12 @@ void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
     sprite->w = w;
     sprite->h = h;
 }
+
+/**
+ * \brief           La fonction initialise les données du monde du jeu
+ * \param world     les données du monde
+ */
+
 void init_data(world_t * world)
 {
     
