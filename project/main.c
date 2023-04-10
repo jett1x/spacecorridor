@@ -114,6 +114,14 @@ void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
     sprite->h = h;
 }
 
+/// @brief Writes to console all the data correspond to particular sprite
+/// @param sprite a sprite you want to get information about
+void print_sprite(sprite_t *sprite)
+{
+    printf("Coordinates of sprite are x:%d y:%d\n", sprite->x, sprite->y);
+    printf("The size of sprite is H:%d W:%d\n", sprite->h, sprite->w);
+}
+
 /**
  * \brief           La fonction initialise les données du monde du jeu
  * \param world     les données du monde
@@ -121,11 +129,15 @@ void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
 
 void init_data(world_t * world)
 {
-    
     //on n'est pas à la fin du jeu
+    world = malloc(sizeof(world_t));
     world->gameover = 0;
+    world->ship = malloc(sizeof(sprite_t));
     world->ship->x = SCREEN_HEIGHT - SHIP_SIZE*2;
     world->ship->y = (SCREEN_WIDTH - SHIP_SIZE)/2;
+    world->ship->h = SHIP_SIZE;
+    world->ship->w = SHIP_SIZE;
+    print_sprite(world->ship);
 }
 
 
@@ -311,7 +323,6 @@ int main( int argc, char* args[] )
 
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
-    
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
         
         //gestion des évènements
