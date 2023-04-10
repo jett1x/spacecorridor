@@ -1,9 +1,9 @@
 /**
- * \file main.c
- * \brief Programme principal initial du niveau 1
- * \author Mathieu Constant
- * \version 1.0
- * \date 18 mars 2021
+ * \file            main.c
+ * \brief           Programme principal initial du niveau 1
+ * \author          Mathieu Constant, Ivan Osadtsiv, Denys Scherba
+ * \version         1.0
+ * \date            10.04.2023
  */
 
 #include "sdl2-light.h"
@@ -78,7 +78,7 @@ typedef struct textures_s textures_t;
 
 
 /**
- * \brief Représentation du monde du jeu
+ * \brief           Représentation du monde du jeu
 */
 
 struct world_s
@@ -103,7 +103,7 @@ struct sprite_s
     int w;
 };
 /**
- * \brief Type de sprite
+ * \brief           Type de sprite
 */
 typedef struct sprite_s sprite_t;
 
