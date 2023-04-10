@@ -66,6 +66,7 @@ typedef struct textures_s
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
     SDL_Texture* ship;
     SDL_Texture* line;
+    SDL_Texture* meteorite;
 }textures_t;
 
 /**
@@ -89,6 +90,7 @@ typedef struct world_s
     int vy;       /*!< A field indicate a vertical speed */
     sprite_t * ship;
     sprite_t * line;
+    sprite_t * wall;
 }world_t;
 
 
@@ -125,6 +127,9 @@ void init_data(world_t * world)
 
     world->line = malloc(sizeof(sprite_t));
     init_sprite(world->line, 0, FINISH_LINE_HEIGHT, SCREEN_WIDTH, 8);
+
+    world->wall = malloc(sizeof(sprite_t));
+    init_sprite(world->wall, (SCREEN_WIDTH - METEORITE_SIZE*7)/2, SCREEN_HEIGHT/2 - 1.5*METEORITE_SIZE, METEORITE_SIZE*7, METEORITE_SIZE*3);
 }
 
 
@@ -221,6 +226,7 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures)
     textures->background = load_image( "ressources/space-background.bmp", renderer);
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
+    textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
 }
 
 /**
@@ -233,6 +239,7 @@ void clean_textures(textures_t *textures)
     clean_texture(textures->background);
     clean_texture(textures->ship);
     clean_texture(textures->line);
+    clean_texture(textures->meteorite);
 }
 
 /**
