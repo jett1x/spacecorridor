@@ -86,6 +86,7 @@ typedef struct sprite_s
 typedef struct world_s
 {
     int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
+    int vy;       /*!< A field indicate a vertical speed */
     sprite_t * ship;
     sprite_t * line;
 }world_t;
@@ -117,6 +118,7 @@ void init_data(world_t * world)
     //on n'est pas à la fin du jeu
 
     world->gameover = 0;
+    world->vy = INITIAL_SPEED;
 
     world->ship = malloc(sizeof(sprite_t));
     init_sprite(world->ship, (SCREEN_WIDTH - SHIP_SIZE)/2, SCREEN_HEIGHT - SHIP_SIZE*2, SHIP_SIZE, SHIP_SIZE);
@@ -159,7 +161,7 @@ int is_game_over(world_t *world)
 
 void update_data(world_t *world)
 {
-    /* A COMPLETER */
+    world->line->y += world->vy;
 }
 
 
