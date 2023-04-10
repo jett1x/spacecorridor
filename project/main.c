@@ -66,7 +66,7 @@
 struct textures_s
 {
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
-    SDL_Texture* sprite;
+    SDL_Texture* ship;
 };
 
 
@@ -130,14 +130,13 @@ void print_sprite(sprite_t *sprite)
 void init_data(world_t * world)
 {
     //on n'est pas à la fin du jeu
-    world = malloc(sizeof(world_t));
+
     world->gameover = 0;
     world->ship = malloc(sizeof(sprite_t));
-    world->ship->x = SCREEN_HEIGHT - SHIP_SIZE*2;
-    world->ship->y = (SCREEN_WIDTH - SHIP_SIZE)/2;
+    world->ship->x = (SCREEN_WIDTH - SHIP_SIZE)/2;
+    world->ship->y = SCREEN_HEIGHT - SHIP_SIZE*2;
     world->ship->h = SHIP_SIZE;
     world->ship->w = SHIP_SIZE;
-    print_sprite(world->ship);
 }
 
 
@@ -200,12 +199,26 @@ void handle_events(SDL_Event *event,world_t *world)
        
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
-             //si la touche appuyée est 'D'
-             if(event->key.keysym.sym == SDLK_d)
-             {
-                 printf("La touche D est appuyée\n");
-              }
-         }
+            switch (event->key.keysym.sym)
+            {
+            //si la touche appuyée est 'D'
+            case SDLK_d:
+                printf("La touche D est appuyée\n");
+                break;
+            // si la touche appuyée est 'RIGHT'
+            case SDLK_RIGHT:
+                (world->ship->x) += MOVING_STEP;
+                break;
+            // si la touche appuyée est 'LEFT'
+            case SDLK_LEFT:
+                (world->ship->x) -= MOVING_STEP;
+                break;
+            // si la touche appuyée est 'ESC'
+            case SDLK_ESCAPE:
+                world->gameover = 1;
+                break;
+            }
+        }
     }
 }
 
@@ -218,6 +231,7 @@ void handle_events(SDL_Event *event,world_t *world)
 void clean_textures(textures_t *textures)
 {
     clean_texture(textures->background);
+    clean_texture(textures->ship);
 }
 
 
@@ -231,9 +245,7 @@ void clean_textures(textures_t *textures)
 void  init_textures(SDL_Renderer *renderer, textures_t *textures)
 {
     textures->background = load_image( "ressources/space-background.bmp",renderer);
-    textures->sprite = load_image( "ressources/spaceship.bmp",renderer);
-    /* A COMPLETER */
-
+    textures->ship = load_image( "ressources/spaceship.bmp",renderer);
     
 }
 
@@ -251,8 +263,14 @@ void apply_background(SDL_Renderer *renderer, SDL_Texture *texture)
     }
 }
 
-
-
+/// @brief 
+/// @param renderer 
+/// @param texture 
+/// @param sprite 
+void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
+{
+    apply_texture(texture, renderer, sprite->x, sprite->y);
+}
 
 
 /**
@@ -266,11 +284,10 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     
     //on vide le renderer
     clear_renderer(renderer);
-    
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    /* A COMPLETER */
-    
+    //application de vaisseau texture dans le renderer
+    apply_sprite(renderer, textures->ship, world->ship);
     // on met à jour l'écran
     update_screen(renderer);
 }
