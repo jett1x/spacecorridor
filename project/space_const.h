@@ -40,33 +40,4 @@
 /// @brief            Pas de changement de vitesse
 #define SPEED_DELTA 0.5
 
-
-/// @brief          Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
-typedef struct textures_s
-{
-    SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
-    SDL_Texture* ship;
-    SDL_Texture* line;
-    SDL_Texture* meteorite;
-}textures_t;
-
-
-/// @brief           Type de sprite
-typedef struct sprite_s
-{
-    int x;
-    int y;
-    int h;
-    int w;
-} sprite_t;
-
-
-/// @brief           Type qui correspond aux données du monde
-typedef struct world_s
-{
-    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
-    float vy;       /*!< A field indicate a vertical speed */
-    sprite_t * ship;
-    sprite_t * line;
-    sprite_t * wall;
-}world_t;
+#endif
