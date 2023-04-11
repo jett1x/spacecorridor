@@ -58,6 +58,13 @@
 
 
 /**
+ * \brief            Pas de changement de vitesse
+*/
+
+#define SPEED_STEP 1
+
+
+/**
  * \brief           Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
 */
 
@@ -210,6 +217,14 @@ void handle_events(SDL_Event *event,world_t *world)
             // si la touche appuyée est 'ESC'
             case SDLK_ESCAPE:
                 world->gameover = 1;
+                break;
+            // si la touche appuyée est 'DOWN'
+            case SDLK_DOWN:
+                (world->vy) -= SPEED_STEP;
+                break;
+            // si la touche appuyée est 'UP'
+            case SDLK_UP:
+                (world->vy) += SPEED_STEP;
                 break;
             }
         }
