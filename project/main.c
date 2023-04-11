@@ -61,7 +61,7 @@
  * \brief            Pas de changement de vitesse
 */
 
-#define SPEED_STEP 1
+#define SPEED_DELTA 0.5
 
 
 /**
@@ -94,7 +94,7 @@ typedef struct sprite_s
 typedef struct world_s
 {
     int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
-    int vy;       /*!< A field indicate a vertical speed */
+    float vy;       /*!< A field indicate a vertical speed */
     sprite_t * ship;
     sprite_t * line;
     sprite_t * wall;
@@ -220,11 +220,11 @@ void handle_events(SDL_Event *event,world_t *world)
                 break;
             // si la touche appuyée est 'DOWN'
             case SDLK_DOWN:
-                (world->vy) -= SPEED_STEP;
+                (world->vy) -= SPEED_DELTA;
                 break;
             // si la touche appuyée est 'UP'
             case SDLK_UP:
-                (world->vy) += SPEED_STEP;
+                (world->vy) += SPEED_DELTA;
                 break;
             }
         }
