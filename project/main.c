@@ -129,7 +129,7 @@ void init_data(world_t * world)
     init_sprite(world->line, 0, FINISH_LINE_HEIGHT, SCREEN_WIDTH, 8);
 
     world->wall = malloc(sizeof(sprite_t));
-    init_sprite(world->wall, (SCREEN_WIDTH - METEORITE_SIZE*7)/2, SCREEN_HEIGHT/2 - 1.5*METEORITE_SIZE, METEORITE_SIZE*7, METEORITE_SIZE*3);
+    init_sprite(world->wall, (SCREEN_WIDTH-3*METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*7)/2, METEORITE_SIZE*7, METEORITE_SIZE*3);
 }
 
 
@@ -167,6 +167,7 @@ int is_game_over(world_t *world)
 void update_data(world_t *world)
 {
     world->line->y += world->vy;
+    world->wall->y += world->vy;
 }
 
 
@@ -255,13 +256,28 @@ void apply_background(SDL_Renderer *renderer, SDL_Texture *texture)
     }
 }
 
-/// @brief          Applies sprint on a screen
+/// @brief          Applies sprite on a screen
 /// @param renderer renderer
 /// @param texture  texture
 /// @param sprite   sprite to apply
 void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
 {
     apply_texture(texture, renderer, sprite->x, sprite->y);
+}
+
+/// @brief          Applies a wall of sprites on a screen
+/// @param renderer renderer
+/// @param texture  texture
+/// @param sprite   sprite to apply
+void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
+{
+    for(size_t i = 0; i < 3; i++)
+    {
+        for(size_t j = 0; j < 7; j++)
+        {
+            apply_texture(texture, renderer, sprite->x + METEORITE_SIZE*i, sprite->y + METEORITE_SIZE*j); 
+        }
+    }
 }
 
 /**
@@ -281,6 +297,8 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     apply_sprite(renderer, textures->ship, world->ship);
     //application de ligne texture dans le renderer
     apply_sprite(renderer, textures->line, world->line);
+    //application de mur des meteorites dans le renderer
+    apply_wall(renderer, textures->meteorite, world->wall);
     // on met à jour l'écran
     update_screen(renderer);
 }
