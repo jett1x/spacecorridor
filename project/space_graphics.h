@@ -7,6 +7,7 @@
 #define SPACE_GRAPHICS_H
 
 #include "sdl2-light.h"
+#include "space_logics.h"
 
 
 /// @brief          Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu

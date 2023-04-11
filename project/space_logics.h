@@ -7,19 +7,7 @@
 #define SPACE_GRAPHICS_H
 
 #include "sdl2-light.h"
-
-
-
-/// @brief           Type qui correspond aux données du monde
-typedef struct world_s
-{
-    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
-    float vy;       /*!< A field indicate a vertical speed */
-    sprite_t * ship;
-    sprite_t * line;
-    sprite_t * wall;
-}world_t;
-
+#include "space_graphics.h"
 
 
 /// @brief          La fonction indique si le jeu est fini en fonction des données du monde

@@ -1,6 +1,9 @@
 #include "sdl2-light.h"
 #include "space_graphics.h"
+#include "space_logics.h"
 #include "space_const.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void print_sprite(sprite_t *sprite)
 {

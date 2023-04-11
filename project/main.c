@@ -8,6 +8,10 @@
 #include "sdl2-light.h"
 #include <stdio.h>
 
+#include "space_logics.h"
+#include "space_graphics.h"
+#include "space_const.h"
+
 
 
 /// @brief Initiallisation of sprite_t
