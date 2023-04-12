@@ -2,43 +2,11 @@
 /// @author         OSADTSIV Ivan, SCHERBA Denys
 /// @brief          TP2
 
-
 #ifndef SPACE_GRAPHICS_H
 #define SPACE_GRAPHICS_H
 
 #include "sdl2-light.h"
 #include "space_logics.h"
-
-
-/// @brief          Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
-typedef struct textures_s
-{
-    SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
-    SDL_Texture* ship;
-    SDL_Texture* line;
-    SDL_Texture* meteorite;
-}textures_t;
-
-
-/// @brief           Type de sprite
-typedef struct sprite_s
-{
-    int x;
-    int y;
-    int h;
-    int w;
-} sprite_t;
-
-
-/// @brief           Type qui correspond aux données du monde
-typedef struct world_s
-{
-    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
-    float vy;       /*!< A field indicate a vertical speed */
-    sprite_t * ship;
-    sprite_t * line;
-    sprite_t * wall;
-}world_t;
 
 
 /// @brief          Writes to console all the data correspond to particular sprite
