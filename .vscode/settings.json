@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "sdl2-light.h": "c",
+        "space_graphic.h": "c"
+    }
+}
