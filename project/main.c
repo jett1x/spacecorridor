@@ -8,6 +8,8 @@
 
 #include "sdl2-light.h"
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 
 /**
@@ -74,7 +76,7 @@ typedef struct textures_s
     SDL_Texture* ship;
     SDL_Texture* line;
     SDL_Texture* meteorite;
-}textures_t;
+} textures_t;
 
 /**
  * \brief           Type de sprite
@@ -98,7 +100,7 @@ typedef struct world_s
     sprite_t * ship;
     sprite_t * line;
     sprite_t * wall;
-}world_t;
+} world_t;
 
 
 void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
@@ -136,7 +138,7 @@ void init_data(world_t * world)
     init_sprite(world->line, 0, FINISH_LINE_HEIGHT, SCREEN_WIDTH, 8);
 
     world->wall = malloc(sizeof(sprite_t));
-    init_sprite(world->wall, (SCREEN_WIDTH-3*METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*7)/2, METEORITE_SIZE*7, METEORITE_SIZE*3);
+    init_sprite(world->wall, (SCREEN_WIDTH-METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*3)/2, METEORITE_SIZE*3, METEORITE_SIZE*7);
 }
 
 
@@ -164,7 +166,34 @@ int is_game_over(world_t *world)
     return world->gameover;
 }
 
+/// @brief     checks if sprites collide
+/// @param sp1 sprite 1
+/// @param sp2 sprite 2
+/// @return    1 if sprites collide, else 0
+bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
+{
+    if((abs(sp1->x - sp2->x) <= (sp1->w + sp2->w)/2) && (abs(sp1->y - sp2->y) <= (sp1->h + sp2->h)/2))
+    {
+        printf("COLLISION\n");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
 
+/// @brief          if sprites collide, resets vertical velocity to 0
+/// @param sp1      sprite 1
+/// @param sp2      sprite 2
+/// @param world    world
+void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
+{
+    if(sprites_collide(sp1, sp2))
+    {
+        world->vy = 0;
+    }
+}
 
 /**
  * \brief           La fonction met à jour les données en tenant compte de la physique du monde
@@ -175,8 +204,9 @@ void update_data(world_t *world)
 {
     world->line->y += world->vy;
     world->wall->y += world->vy;
-}
 
+    handle_sprites_collision(world->ship, world->wall, world);
+}
 
 
 /**
@@ -309,7 +339,7 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
     {
         for(size_t j = 0; j < 7; j++)
         {
-            apply_texture(texture, renderer, sprite->x + METEORITE_SIZE*i, sprite->y + METEORITE_SIZE*j); 
+            apply_texture(texture, renderer, (sprite->x - METEORITE_SIZE) + METEORITE_SIZE*i, (sprite->y - 3*METEORITE_SIZE) + METEORITE_SIZE*j); 
         }
     }
 }
@@ -376,8 +406,6 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, w
 /**
  *  \brief          programme principal qui implémente la boucle du jeu
  */
-
-
 int main( int argc, char* args[] )
 {
     SDL_Event event;
