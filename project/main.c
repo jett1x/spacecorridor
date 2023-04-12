@@ -185,7 +185,12 @@ void update_data(world_t *world)
  * \param world     les données du monde
  */
 
-void handle_events(SDL_Event *event,world_t *world)
+void handle_borders_passing(world_t *world_s)
+{
+    //
+}
+
+void handle_events(SDL_Event *event, world_t *world)
 {
     Uint8 *keystates;
     while( SDL_PollEvent( event ) ) 
@@ -208,12 +213,26 @@ void handle_events(SDL_Event *event,world_t *world)
                 break;
             // si la touche appuyée est 'RIGHT'
             case SDLK_RIGHT:
-                (world->ship->x) += MOVING_STEP;
-                break;
+                if(world->ship->x + SHIP_SIZE < SCREEN_WIDTH)
+                {
+                    (world->ship->x) += MOVING_STEP;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             // si la touche appuyée est 'LEFT'
             case SDLK_LEFT:
-                (world->ship->x) -= MOVING_STEP;
-                break;
+                if(world->ship->x - SHIP_SIZE * 0.25 > 0)
+                {
+                    (world->ship->x) -= MOVING_STEP;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             // si la touche appuyée est 'ESC'
             case SDLK_ESCAPE:
                 world->gameover = 1;
@@ -302,7 +321,8 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
  * \param textures  les textures
  */
 
-void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures)
+{
     
     //on vide le renderer
     clear_renderer(renderer);
@@ -328,7 +348,8 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 * \param world      le monde
 */
 
-void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world){
+void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world)
+{
     clean_data(world);
     clean_textures(textures);
     clean_sdl(renderer,window);
@@ -344,7 +365,8 @@ void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, wo
  * \param world     le monde
  */
 
-void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world){
+void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world)
+{
     init_sdl(window,renderer,SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
     init_textures(*renderer,textures);
