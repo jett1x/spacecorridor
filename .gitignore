@@ -1,4 +1,3 @@
-
-project/spacecorridor.exe
-project/main.o
+*.exe
+*.o
 .vscode/settings.json
