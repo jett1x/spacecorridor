@@ -80,12 +80,28 @@ void handle_events(SDL_Event *event,world_t *world)
                 break;
             // si la touche appuyée est 'RIGHT'
             case SDLK_RIGHT:
-                (world->ship->x) += MOVING_STEP;
-                break;
+                if(world->ship->x + SHIP_SIZE * 1.25 < SCREEN_WIDTH)
+                {
+                    (world->ship->x) += MOVING_STEP;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+
             // si la touche appuyée est 'LEFT'
             case SDLK_LEFT:
-                (world->ship->x) -= MOVING_STEP;
-                break;
+                if(world->ship->x - SHIP_SIZE * 0.25 > 0)
+                {
+                    (world->ship->x) -= MOVING_STEP;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+
             // si la touche appuyée est 'ESC'
             case SDLK_ESCAPE:
                 world->gameover = 1;
