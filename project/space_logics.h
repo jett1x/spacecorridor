@@ -2,13 +2,12 @@
 /// @author         OSADTSIV Ivan, SCHERBA Denys
 /// @brief          TP2
 
+#include "sdl2-light.h"
+#include "space_graphics.h"
+#include "space_graphics.h"
 
 #ifndef SPACE_LOGICS_H
 #define SPACE_LOGICS_H
-
-#include "sdl2-light.h"
-#include "space_graphics.h"
-
 
 /// @brief          Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
 typedef struct textures_s
