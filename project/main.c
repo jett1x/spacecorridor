@@ -11,6 +11,9 @@
 #include "space_logics.h"
 #include "space_graphics.h"
 #include "space_const.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 
 
@@ -45,7 +48,7 @@ void init_data(world_t * world)
     init_sprite(world->line, 0, FINISH_LINE_HEIGHT, SCREEN_WIDTH, 8);
 
     world->wall = malloc(sizeof(sprite_t));
-    init_sprite(world->wall, (SCREEN_WIDTH-3*METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*7)/2, METEORITE_SIZE*7, METEORITE_SIZE*3);
+    init_sprite(world->wall, (SCREEN_WIDTH-METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*3)/2, METEORITE_SIZE*3, METEORITE_SIZE*7);
 }
 
 
@@ -91,7 +94,7 @@ int main( int argc, char* args[] )
         handle_events(&event,&world);
         
         //mise à jour des données liée à la physique du monde
-        update_data(&world);
+        update_data(&world, &textures);
         
         //rafraichissement de l'écran
         refresh_graphics(renderer,&world,&textures);
