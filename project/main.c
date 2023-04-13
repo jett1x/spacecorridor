@@ -215,10 +215,6 @@ void update_data(world_t *world)
  * \param world     les données du monde
  */
 
-void handle_borders_passing(world_t *world_s)
-{
-    //
-}
 
 void handle_events(SDL_Event *event, world_t *world)
 {
@@ -243,7 +239,7 @@ void handle_events(SDL_Event *event, world_t *world)
                 break;
             // si la touche appuyée est 'RIGHT'
             case SDLK_RIGHT:
-                if(world->ship->x + SHIP_SIZE < SCREEN_WIDTH)
+                if(world->ship->x + SHIP_SIZE * 1.25 < SCREEN_WIDTH)
                 {
                     (world->ship->x) += MOVING_STEP;
                     break;
