@@ -41,14 +41,14 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
     {
         for(size_t j = 0; j < 7; j++)
         {
-            apply_texture(texture, renderer, sprite->x + METEORITE_SIZE*i, sprite->y + METEORITE_SIZE*j); 
+            apply_texture(texture, renderer, (sprite->x - METEORITE_SIZE) + METEORITE_SIZE*i, (sprite->y - 3*METEORITE_SIZE) + METEORITE_SIZE*j); 
         }
     }
 }
 
 
-void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures)
-{
+void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    
     //on vide le renderer
     clear_renderer(renderer);
     //application des textures dans le renderer
@@ -64,9 +64,11 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 }
 
 
-void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world)
-{
+void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world){
     clean_data(world);
     clean_textures(textures);
     clean_sdl(renderer,window);
 }
+
+
+
