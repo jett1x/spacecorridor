@@ -5,6 +5,9 @@
 #include "sdl2-light.h"
 #include "space_graphics.h"
 #include "space_graphics.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 #ifndef SPACE_LOGICS_H
 #define SPACE_LOGICS_H
@@ -44,9 +47,24 @@ typedef struct world_s
 int is_game_over(world_t *world);
 
 
+/// @brief     checks if sprites collide
+/// @param sp1 sprite 1
+/// @param sp2 sprite 2
+/// @return    1 if sprites collide, else 0
+bool sprites_collide(sprite_t *sp1, sprite_t *sp2);
+
+
+/// @brief          if sprites collide, resets vertical velocity to 0
+/// @param sp1      sprite 1
+/// @param sp2      sprite 2
+/// @param world    world
+/// @param texture1 texture of the first sprite
+void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1);
+
+
 /// @brief          La fonction met à jour les données en tenant compte de la physique du monde
 /// @param les      données du monde
-void update_data(world_t *world);
+void update_data(world_t *world, textures_t *textures);
 
 
 /// @brie           La fonction nettoie les données du monde
