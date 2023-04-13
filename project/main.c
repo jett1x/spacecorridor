@@ -63,6 +63,12 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures)
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
 }
 
+/// @brief Function for creating 6 walls
+/// @param world 
+void init_walls(world_t * world){
+    //
+}
+
 
 /// @brief           fonction qui initialise le jeu: initialisation de la partie graphique (SDL), chargement des textures, initialisation des données
 /// @param window    la fenêtre du jeu
