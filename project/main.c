@@ -187,11 +187,19 @@ bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
 /// @param sp1      sprite 1
 /// @param sp2      sprite 2
 /// @param world    world
-void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
+/// @param texture1 texture of the first sprite
+void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1)
 {
+    bool make_dissapear = 0;
     if(sprites_collide(sp1, sp2))
     {
         world->vy = 0;
+        make_dissapear = 1;
+    }
+
+    if(make_dissapear)
+    {
+        clean_texture(texture1);
     }
 }
 
@@ -200,12 +208,12 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
  * \param les       données du monde
  */
 
-void update_data(world_t *world)
+void update_data(world_t *world, textures_t *textures)
 {
     world->line->y += world->vy;
     world->wall->y += world->vy;
 
-    handle_sprites_collision(world->ship, world->wall, world);
+    handle_sprites_collision(world->ship, world->wall, world, textures->ship);
 }
 
 
@@ -418,7 +426,7 @@ int main( int argc, char* args[] )
         handle_events(&event,&world);
         
         //mise à jour des données liée à la physique du monde
-        update_data(&world);
+        update_data(&world, &textures);
         
         //rafraichissement de l'écran
         refresh_graphics(renderer,&world,&textures);
