@@ -43,7 +43,7 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 /// @param renderer no
 /// @param texture  no
 /// @param sprite   no
-void init_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
+void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 
 
 /// @brief          La fonction rafraichit l'écran en fonction de l'état des données du monde

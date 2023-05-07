@@ -46,7 +46,7 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
     }
 }
 
-void init_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
+void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
 {   
     for(size_t i = 0; i < 3; i++)
     {
@@ -70,7 +70,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     //application de mur des meteorites dans le renderer
     apply_wall(renderer, textures->meteorite, world->wall);
     // on met à jour l'écran
-    // init_walls(renderer, textures->meteorite, world->wall);
+    // apply_walls(renderer, textures->meteorite, world->wall);
     update_screen(renderer);
 }
 

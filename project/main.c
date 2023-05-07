@@ -17,12 +17,12 @@
 
 
 
-/// @brief Initiallisation of sprite_t
-/// @param sprite 
-/// @param x 
-/// @param y 
-/// @param w 
-/// @param h 
+/// @brief          Initiallisation of sprite_t
+/// @param sprite   sprite
+/// @param x        x coordinate
+/// @param y        y coordinate
+/// @param w        width
+/// @param h        heigth
 void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
 {
     sprite->x = x;
@@ -32,8 +32,8 @@ void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
 }
 
 
-/// @brief           La fonction initialise les données du monde du jeu
-/// @param world     les données du monde
+/// @brief          La fonction initialise les données du monde du jeu
+/// @param world    les données du monde
 void init_data(world_t * world)
 {
     //on n'est pas à la fin du jeu
@@ -49,7 +49,13 @@ void init_data(world_t * world)
 
     world->wall = malloc(sizeof(sprite_t));
     init_sprite(world->wall, (SCREEN_WIDTH-METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*3)/2, METEORITE_SIZE*3, METEORITE_SIZE*7);
+}
 
+
+/// @brief           La fonction initialise les murs
+/// @param world     les données du monde
+void init_walls(world_t * world)
+{
     world->wall0 = malloc(sizeof(sprite_t));
     init_sprite(world->wall0, 48, 0, 96, 192);
 
@@ -89,13 +95,14 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures)
 /// @param world     le monde
 void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world)
 {
-    init_sdl(window,renderer,SCREEN_WIDTH, SCREEN_HEIGHT);
+    init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
-    init_textures(*renderer,textures);
+    init_textures(*renderer, textures);
+    init_walls(world);
 }
 
 
-/// @brief          programme principal qui implémente la boucle du jeu
+/// @brief           programme principal qui implémente la boucle du jeu
 int main( int argc, char* args[] )
 {
     SDL_Event event;
