@@ -38,6 +38,12 @@ void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite
 /// @param sprite   sprite to apply
 void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 
+/// @brief          no
+/// @param renderer no
+/// @param texture  no
+/// @param sprite   no
+void init_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
+
 
 /// @brief          La fonction rafraichit l'écran en fonction de l'état des données du monde
 /// @param renderer le renderer lié à l'écran de jeu
