@@ -3,8 +3,8 @@
 /// @brief          TP2
 
 #include "sdl2-light.h"
-#include "space_graphics.h"
-#include "space_graphics.h"
+#include "SDL2/SDL.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>

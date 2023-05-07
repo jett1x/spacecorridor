@@ -2,11 +2,12 @@
 /// @author         OSADTSIV Ivan, SCHERBA Denys
 /// @brief          TP2
 
-#ifndef SPACE_GRAPHICS_H
-#define SPACE_GRAPHICS_H
-
 #include "sdl2-light.h"
 #include "space_logics.h"
+
+
+#ifndef SPACE_GRAPHICS_H
+#define SPACE_GRAPHICS_H
 
 
 /// @brief          Writes to console all the data correspond to particular sprite
