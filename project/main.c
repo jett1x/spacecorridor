@@ -49,6 +49,24 @@ void init_data(world_t * world)
 
     world->wall = malloc(sizeof(sprite_t));
     init_sprite(world->wall, (SCREEN_WIDTH-METEORITE_SIZE)/2, (SCREEN_HEIGHT - METEORITE_SIZE*3)/2, METEORITE_SIZE*3, METEORITE_SIZE*7);
+
+    world->wall0 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall0, 48, 0, 96 * 5, 192 * 3);
+
+    world->wall1 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall1, 252, 0, 96 * 5, 192 * 3);
+
+    world->wall2 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall2, 16, -352, 32 * 5, 192 * 3);
+
+    world->wall3 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall3, 16, -352, 32 * 5, 160 * 3);
+
+    world->wall4 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall4, 48, -672, 96 * 5, 192 * 3);
+
+    world->wall5 = malloc(sizeof(sprite_t));
+    init_sprite(world->wall5, 252, -672, 96 * 5, 192 * 3);
 }
 
 
