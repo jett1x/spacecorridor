@@ -37,24 +37,23 @@ void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite
 
 void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
 {
-    for(size_t i = 0; i < 3; i++)
+    for(size_t i = 0; i < (sprite->w / METEORITE_SIZE); i++)
     {
-        for(size_t j = 0; j < 7; j++)
+        for(size_t j = 0; j < (sprite->h / METEORITE_SIZE); j++)
         {
             apply_texture(texture, renderer, (sprite->x - METEORITE_SIZE) + METEORITE_SIZE*i, (sprite->y - 3*METEORITE_SIZE) + METEORITE_SIZE*j); 
         }
     }
 }
 
-void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
+void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world)
 {   
-    for(size_t i = 0; i < 3; i++)
-    {
-        for(size_t j = 0; j < 7; j++)
-        {
-            apply_texture(texture, renderer, (sprite->x - METEORITE_SIZE) + METEORITE_SIZE*i, (sprite->y - 3*METEORITE_SIZE) + METEORITE_SIZE*j); 
-        }
-    }
+    apply_wall(renderer, texture, world->wall0);
+    apply_wall(renderer, texture, world->wall1);
+    apply_wall(renderer, texture, world->wall2);
+    apply_wall(renderer, texture, world->wall3);
+    apply_wall(renderer, texture, world->wall4);
+    apply_wall(renderer, texture, world->wall5);
 }
 
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
@@ -69,8 +68,9 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     apply_sprite(renderer, textures->line, world->line);
     //application de mur des meteorites dans le renderer
     apply_wall(renderer, textures->meteorite, world->wall);
+    //application des murs des meteorites dans le renderer
+    apply_walls(renderer, textures->meteorite, world);
     // on met à jour l'écran
-    // apply_walls(renderer, textures->meteorite, world->wall);
     update_screen(renderer);
 }
 

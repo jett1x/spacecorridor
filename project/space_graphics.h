@@ -43,14 +43,14 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 /// @param renderer no
 /// @param texture  no
 /// @param sprite   no
-void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
+void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world);
 
 
 /// @brief          La fonction rafraichit l'écran en fonction de l'état des données du monde
 /// @param renderer le renderer lié à l'écran de jeu
 /// @param world    les données du monde
 /// @param textures les textures
-void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void refresh_graphics(SDL_Renderer *renderer, world_t *world, textures_t *textures);
 
 
 /// @brief          fonction qui nettoie le jeu: nettoyage de la partie graphique (SDL), nettoyage des textures, nettoyage des données
