@@ -42,10 +42,22 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_
 }
 
 
+void update_walls(world_t *world, textures_t *textures)
+{
+    world->wall0->y += world->vy;
+    world->wall1->y += world->vy;
+    world->wall2->y += world->vy;
+    world->wall3->y += world->vy;
+    world->wall4->y += world->vy;
+    world->wall5->y += world->vy;
+}
+
+
 void update_data(world_t *world, textures_t *textures)
 {
     world->line->y += world->vy;
     world->wall->y += world->vy;
+    update_walls(world, textures);
 
     handle_sprites_collision(world->ship, world->wall, world, textures->ship);
 }
