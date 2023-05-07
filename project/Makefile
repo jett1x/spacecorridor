@@ -3,7 +3,7 @@ LDFLAGS = -lm -lmingw32 -lSDL2main -lSDL2 -L C:\MinGW\lib\gcc\mingw32\6.3.0
 SDL2_INCLUDE_DIR = C:\SDL2\i686-w64-mingw32\include
 SDL2_LIBRARIES_DIR = C:\SDL2\i686-w64-mingw32\lib
 INC = sdl2-light.h space_graphics.h space_logics.h space_const.h
-SRC = main.c sdl2-light.c space_graphics.c space_logics.c
+SRC = main.c sdl2-light.c space_graphics.c space_logics.c test.c
 OBJ = $(SRC:%.c=%.o)
 
 PROG = spacecorridor.exe

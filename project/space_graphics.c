@@ -7,7 +7,7 @@
 
 void print_sprite(sprite_t *sprite)
 {
-    printf("Coordinates of sprite are x:%d y:%d\n", sprite->x, sprite->y);
+    printf("Coordinates of sprite are X:%d Y:%d\n", sprite->x, sprite->y);
     printf("The size of sprite is H:%d W:%d\n", sprite->h, sprite->w);
 }
 
