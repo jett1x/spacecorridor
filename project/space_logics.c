@@ -56,10 +56,16 @@ void update_walls(world_t *world, textures_t *textures)
 void update_data(world_t *world, textures_t *textures)
 {
     world->line->y += world->vy;
-    world->wall->y += world->vy;
+    //world->wall->y += world->vy;
     update_walls(world, textures);
 
-    handle_sprites_collision(world->ship, world->wall, world, textures->ship);
+    //handle_sprites_collision(world->ship, world->wall, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall0, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall1, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall2, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall3, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall4, world, textures->ship);
+    handle_sprites_collision(world->ship, world->wall5, world, textures->ship);
 }
 
 

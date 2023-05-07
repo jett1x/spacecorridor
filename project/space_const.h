@@ -26,7 +26,7 @@
 
 
 /// @brief           Hauteur de la ligne d'arrivée
-#define FINISH_LINE_HEIGHT 10
+#define FINISH_LINE_HEIGHT -960
 
 
 /// @brief           Pas de déplacement horizontal du vaisseau

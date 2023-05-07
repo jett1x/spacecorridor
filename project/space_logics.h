@@ -37,7 +37,7 @@ typedef struct world_s
     float vy;       /*!< A field indicate a vertical speed */
     sprite_t * ship;
     sprite_t * line;
-    sprite_t * wall;
+    //sprite_t * wall;
     sprite_t * wall0;
     sprite_t * wall1;
     sprite_t * wall2;

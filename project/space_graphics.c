@@ -67,7 +67,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     //application de ligne texture dans le renderer
     apply_sprite(renderer, textures->line, world->line);
     //application de mur des meteorites dans le renderer
-    apply_wall(renderer, textures->meteorite, world->wall);
+    //apply_wall(renderer, textures->meteorite, world->wall);
     //application des murs des meteorites dans le renderer
     apply_walls(renderer, textures->meteorite, world);
     // on met à jour l'écran
