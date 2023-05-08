@@ -76,7 +76,7 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
 }
 
 
-void update_walls(world_t *world, textures_t *textures)
+void update_walls(world_t *world, resources_t *textures)
 {
     world->wall0->y += world->vy;
     world->wall1->y += world->vy;
@@ -87,7 +87,7 @@ void update_walls(world_t *world, textures_t *textures)
 }
 
 
-void update_data(world_t *world, textures_t *textures)
+void update_data(world_t *world, resources_t *textures)
 {
     world->line->y += world->vy;
     //world->wall->y += world->vy;

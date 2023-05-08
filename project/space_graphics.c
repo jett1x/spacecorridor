@@ -17,7 +17,7 @@ void print_sprite(sprite_t *sprite)
 }
 
 
-void clean_textures(textures_t *textures)
+void clean_textures(resources_t *textures)
 {
     clean_texture(textures->background);
     clean_texture(textures->ship);
@@ -61,7 +61,7 @@ void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world)
     apply_wall(renderer, texture, world->wall5);
 }
 
-void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textures){
     
     //on vide le renderer
     clear_renderer(renderer);
@@ -80,7 +80,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 }
 
 
-void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world){
+void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, world_t * world){
     clean_data(world);
     clean_textures(textures);
     clean_sdl(renderer,window);

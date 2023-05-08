@@ -14,14 +14,14 @@
 #define SPACE_LOGICS_H
 
 /// @brief          Représentation pour stocker les textures nécessaires à l'affichage graphique et type qui correspond aux textures du jeu
-typedef struct textures_s
+typedef struct resources_s
 {
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
     SDL_Texture* ship;
     SDL_Texture* line;
     SDL_Texture* meteorite;
     TTF_Font* font;
-} textures_t;
+} resources_t;
 
 /// @brief           Type de sprite
 typedef struct sprite_s
@@ -85,7 +85,7 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship);
 
 /// @brief          La fonction met à jour les données en tenant compte de la physique du monde
 /// @param les      données du monde
-void update_data(world_t *world, textures_t *textures);
+void update_data(world_t *world, resources_t *textures);
 
 
 /// @brief          La fonction nettoie les données du monde

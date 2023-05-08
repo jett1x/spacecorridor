@@ -18,7 +18,7 @@ void print_sprite(sprite_t *sprite);
 
 /// @brief          La fonction nettoie les textures
 /// @param textures les textures
-void clean_textures(textures_t *textures);
+void clean_textures(resources_t *textures);
 
 
 /// @brief          La fonction applique la texture du fond sur le renderer lié à l'écran de jeu
@@ -51,7 +51,7 @@ void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world);
 /// @param renderer le renderer lié à l'écran de jeu
 /// @param world    les données du monde
 /// @param textures les textures
-void refresh_graphics(SDL_Renderer *renderer, world_t *world, textures_t *textures);
+void refresh_graphics(SDL_Renderer *renderer, world_t *world, resources_t *textures);
 
 
 /// @brief          fonction qui nettoie le jeu: nettoyage de la partie graphique (SDL), nettoyage des textures, nettoyage des données
@@ -59,6 +59,6 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world, textures_t *textur
 /// @param renderer le renderer
 /// @param textures les textures
 /// @param world    le monde
-void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world);
+void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, world_t * world);
 
 #endif

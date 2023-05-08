@@ -79,7 +79,7 @@ void init_walls(world_t * world)
 /// @brief           La fonction initialise les textures nécessaires à l'affichage graphique du jeu
 /// @param screen    la surface correspondant à l'écran de jeu
 /// @param textures  les textures du jeu
-void  init_textures(SDL_Renderer *renderer, textures_t *textures)
+void  init_textures(SDL_Renderer *renderer, resources_t *textures)
 {
     const char *font_path;
     font_path = "arial.ttf";
@@ -96,7 +96,7 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures)
 /// @param renderer  le renderer
 /// @param textures  les textures
 /// @param world     le monde
-void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world)
+void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, world_t * world)
 {
     init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
@@ -111,7 +111,7 @@ int main( int argc, char* args[] )
 {
     SDL_Event event;
     world_t world;
-    textures_t textures;
+    resources_t textures;
     SDL_Renderer *renderer;
     SDL_Window *window;
 

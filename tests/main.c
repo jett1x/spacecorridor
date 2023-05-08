@@ -49,7 +49,7 @@ struct textures_s{
  * \brief Type qui correspond aux textures du jeu
 */
 
-typedef struct textures_s textures_t;
+typedef struct textures_s resources_t;
 
 
 /**
@@ -176,7 +176,7 @@ void handle_events(SDL_Event *event,world_t *world){
  * \param textures les textures
 */
 
-void clean_textures(textures_t *textures){
+void clean_textures(resources_t *textures){
     clean_texture(textures->background);
     clean_texture(textures->sprite);
 }
@@ -189,7 +189,7 @@ void clean_textures(textures_t *textures){
  * \param textures les textures du jeu
 */
 
-void  init_textures(SDL_Renderer *renderer, textures_t *textures){
+void  init_textures(SDL_Renderer *renderer, resources_t *textures){
     textures->background = load_image( "ressources/background.bmp",renderer);
     
     textures->sprite = load_image("ressources/sprite.bmp", renderer);
@@ -204,7 +204,7 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
  * \param textures les textures du jeu
 */
 
-void apply_background(SDL_Renderer *renderer, textures_t *textures){
+void apply_background(SDL_Renderer *renderer, resources_t *textures){
     if(textures->background != NULL){
       apply_texture(textures->background, renderer, 0, 0);
     }
@@ -221,7 +221,7 @@ void apply_background(SDL_Renderer *renderer, textures_t *textures){
  * \param textures les textures du jeu
  */
 
-void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textures){
     
     //on vide le renderer
     clear_renderer(renderer);
@@ -244,7 +244,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 * \param world le monde
 */
 
-void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, world_t * world){
+void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, world_t * world){
     clean_data(world);
     clean_textures(textures);
     clean_sdl(renderer,window);
@@ -260,7 +260,7 @@ void clean(SDL_Window *window, SDL_Renderer * renderer, textures_t *textures, wo
  * \param wordl le monde
  */
 
-void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world){
+void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, world_t * world){
     init_sdl(window,renderer,SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
     init_textures(*renderer,textures);
@@ -276,7 +276,7 @@ int main( int argc, char* args[] )
 {
     SDL_Event event;
     world_t world;
-    textures_t textures;
+    resources_t textures;
     SDL_Renderer *renderer;
     SDL_Window *window;
 
