@@ -65,7 +65,8 @@ bool sprites_collide(sprite_t *sp1, sprite_t *sp2);
 /// @param sp2      sprite 2
 /// @param world    world
 /// @param texture1 texture of the first sprite
-void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1);
+/// @return         1 if sprites collide, else 0
+bool handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1);
 
 
 /// @brief          checks if ship collide with walls

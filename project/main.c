@@ -128,6 +128,8 @@ int main( int argc, char* args[] )
         pause(10);
     }
     
+    pause(3000);
+
     //nettoyage final
     clean(window,renderer,&textures,&world);
     

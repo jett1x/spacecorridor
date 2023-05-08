@@ -30,13 +30,16 @@ bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
 }
 
 
-void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1)
+bool handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1)
 {
     if(sprites_collide(sp1, sp2))
     {
         world->vy = 0;
         clean_texture(texture1);
+        world->gameover = 1;
+        return 1;
     }
+    return 0;
 }
 
 
@@ -44,18 +47,31 @@ void handle_walls_collision(world_t *world, SDL_Texture *ship)
 {
     //handle_sprites_collision(world->ship, world->wall, world, textures->ship);
 
-    handle_sprites_collision(world->ship, world->wall0, world, ship);
-    handle_sprites_collision(world->ship, world->wall1, world, ship);
-    handle_sprites_collision(world->ship, world->wall2, world, ship);
-    handle_sprites_collision(world->ship, world->wall3, world, ship);
-    handle_sprites_collision(world->ship, world->wall4, world, ship);
-    handle_sprites_collision(world->ship, world->wall5, world, ship);
+    if(
+        handle_sprites_collision(world->ship, world->wall0, world, ship)
+        ||
+        handle_sprites_collision(world->ship, world->wall1, world, ship)
+        ||
+        handle_sprites_collision(world->ship, world->wall2, world, ship)
+        ||
+        handle_sprites_collision(world->ship, world->wall3, world, ship)
+        ||
+        handle_sprites_collision(world->ship, world->wall4, world, ship)
+        ||
+        handle_sprites_collision(world->ship, world->wall5, world, ship)
+        )
+        {
+            printf("You lost!\n");
+        }
 }
 
 
 void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
 {
-    handle_sprites_collision(world->ship, world->line, world, ship);
+    if(handle_sprites_collision(world->ship, world->line, world, ship))
+    {
+        printf("You finished in %d seconds\n", (int)(SDL_GetTicks()/1000));
+    }
 }
 
 
