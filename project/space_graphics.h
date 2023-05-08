@@ -4,6 +4,7 @@
 
 #include "sdl2-light.h"
 #include "space_logics.h"
+#include "sdl2-ttf-light.h"
 
 
 #ifndef SPACE_GRAPHICS_H

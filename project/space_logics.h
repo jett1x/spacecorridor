@@ -5,6 +5,7 @@
 #include "sdl2-light.h"
 #include "SDL2/SDL.h"
 
+#include "sdl2-ttf-light.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -19,6 +20,7 @@ typedef struct textures_s
     SDL_Texture* ship;
     SDL_Texture* line;
     SDL_Texture* meteorite;
+    TTF_Font* font;
 } textures_t;
 
 /// @brief           Type de sprite

@@ -11,6 +11,7 @@
 #include "space_logics.h"
 #include "space_graphics.h"
 #include "space_const.h"
+#include "sdl2-ttf-light.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -81,10 +82,13 @@ void init_walls(world_t * world)
 /// @param textures  les textures du jeu
 void  init_textures(SDL_Renderer *renderer, textures_t *textures)
 {
+    const char *font_path;
+    font_path = "arial.ttf";
     textures->background = load_image( "ressources/space-background.bmp", renderer);
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
+    textures->font = load_font(font_path, 14);
 }
 
 
@@ -97,6 +101,7 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, w
 {
     init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
+    init_ttf();
     init_textures(*renderer, textures);
     init_walls(world);
 }

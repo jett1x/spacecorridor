@@ -5,6 +5,7 @@
 #include "space_logics.h"
 #include "space_const.h"
 #include "space_graphics.h"
+#include "sdl2-ttf-light.h"
 #include "sdl2-light.h"
 #include <stdio.h>
 #include <stdbool.h>
