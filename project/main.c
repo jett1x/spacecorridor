@@ -1,6 +1,6 @@
 /// @file            main.c
-/// @brief           Programme principal initial du niveau 1
-/// @author          Mathieu Constant, Ivan Osadtsiv, Denys Scherba
+/// @brief           Main file responsible for game functionality
+/// @author          Mathieu Constant, Denys SHCHERBA, Ivan OSADTSIV
 /// @version         1.0
 /// @date            10.04.2023
 

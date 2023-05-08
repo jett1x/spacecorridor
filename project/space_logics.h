@@ -1,6 +1,6 @@
 /// @file           space_logics.h
-/// @author         OSADTSIV Ivan, SCHERBA Denys
-/// @brief          TP2
+/// @author         SHCHERBA Denys, OSADTSIV Ivan
+/// @brief          File with classes and methods responsible for game logics
 
 #include "sdl2-light.h"
 #include "SDL2/SDL.h"
@@ -33,7 +33,7 @@ typedef struct sprite_s
 /// @brief           Type qui correspond aux données du monde
 typedef struct world_s
 {
-    int gameover; /*!< Champ indiquant si l'on est à la fin du jeu */
+    int gameover;   /*!< Champ indiquant si l'on est à la fin du jeu */
     float vy;       /*!< A field indicate a vertical speed */
     sprite_t * ship;
     sprite_t * line;
@@ -53,10 +53,10 @@ typedef struct world_s
 int is_game_over(world_t *world);
 
 
-/// @brief     checks if sprites collide
-/// @param sp1 sprite 1
-/// @param sp2 sprite 2
-/// @return    1 if sprites collide, else 0
+/// @brief          checks if sprites collide
+/// @param sp1      sprite 1
+/// @param sp2      sprite 2
+/// @return         1 if sprites collide, else 0
 bool sprites_collide(sprite_t *sp1, sprite_t *sp2);
 
 
@@ -85,7 +85,7 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship);
 void update_data(world_t *world, textures_t *textures);
 
 
-/// @brie           La fonction nettoie les données du monde
+/// @brief          La fonction nettoie les données du monde
 /// @param world    les données du monde
 void clean_data(world_t *world);
 

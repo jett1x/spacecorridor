@@ -1,3 +1,7 @@
+/// @file           space_graphics.c
+/// @author         SHCHERBA Denys, OSADTSIV Ivan
+/// @brief          File with methods responsible for game graphics
+
 #include "sdl2-light.h"
 #include "space_graphics.h"
 #include "space_logics.h"

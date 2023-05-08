@@ -1,3 +1,7 @@
+/// @file           space_logics.c
+/// @author         SHCHERBA Denys, OSADTSIV Ivan
+/// @brief          File with methods responsible for game logics
+
 #include "space_logics.h"
 #include "space_const.h"
 #include "space_graphics.h"
