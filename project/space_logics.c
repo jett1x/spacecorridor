@@ -28,17 +28,30 @@ bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
 
 void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_Texture *texture1)
 {
-    bool make_dissapear = 0;
     if(sprites_collide(sp1, sp2))
     {
         world->vy = 0;
-        make_dissapear = 1;
-    }
-
-    if(make_dissapear)
-    {
         clean_texture(texture1);
     }
+}
+
+
+void handle_walls_collision(world_t *world, SDL_Texture *ship)
+{
+    //handle_sprites_collision(world->ship, world->wall, world, textures->ship);
+
+    handle_sprites_collision(world->ship, world->wall0, world, ship);
+    handle_sprites_collision(world->ship, world->wall1, world, ship);
+    handle_sprites_collision(world->ship, world->wall2, world, ship);
+    handle_sprites_collision(world->ship, world->wall3, world, ship);
+    handle_sprites_collision(world->ship, world->wall4, world, ship);
+    handle_sprites_collision(world->ship, world->wall5, world, ship);
+}
+
+
+void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
+{
+    handle_sprites_collision(world->ship, world->line, world, ship);
 }
 
 
@@ -59,13 +72,9 @@ void update_data(world_t *world, textures_t *textures)
     //world->wall->y += world->vy;
     update_walls(world, textures);
 
-    //handle_sprites_collision(world->ship, world->wall, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall0, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall1, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall2, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall3, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall4, world, textures->ship);
-    handle_sprites_collision(world->ship, world->wall5, world, textures->ship);
+    handle_walls_collision(world, textures->ship);
+
+    handle_finish_line_collision(world, textures->ship);
 }
 
 
