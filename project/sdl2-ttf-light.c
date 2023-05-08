@@ -1,5 +1,5 @@
 #include "sdl2-ttf-light.h"
-
+#include <stdio.h>
 
 
 

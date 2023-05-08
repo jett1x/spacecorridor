@@ -1,9 +1,9 @@
-#ifndef __SDL2_TTF_LIGHT__H
-#define __SDL2_TTF_LIGHT__H
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+
+#ifndef __SDL2_TTF_LIGHT__H
+#define __SDL2_TTF_LIGHT__H
 
 /**
  * \brief La fonction initialise l'environnement TTF

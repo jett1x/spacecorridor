@@ -6,12 +6,11 @@
 
 
 #include "sdl2-light.h"
-#include <stdio.h>
+#include "sdl2-ttf-light.h"
 
 #include "space_logics.h"
 #include "space_graphics.h"
 #include "space_const.h"
-#include "sdl2-ttf-light.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
