@@ -46,7 +46,7 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
     {
         for(size_t j = 0; j < (sprite->h / METEORITE_SIZE); j++)
         {
-            apply_texture(texture, renderer, (sprite->x - METEORITE_SIZE) + METEORITE_SIZE*i, (sprite->y - 3*METEORITE_SIZE) + METEORITE_SIZE*j); 
+            apply_texture(texture, renderer, sprite->x + METEORITE_SIZE*i, sprite->y + METEORITE_SIZE*j); 
         }
     }
 }
