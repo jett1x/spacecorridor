@@ -57,22 +57,22 @@ void init_data(world_t * world)
 void init_walls(world_t * world)
 {
     world->wall0 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall0, 48, 0, 96, 192);
+    init_sprite(world->wall0, 48 - 1.5 * METEORITE_SIZE, 0, 96, 192);
 
     world->wall1 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall1, 252, 0, 96, 192);
+    init_sprite(world->wall1, 252 - 1.5 * METEORITE_SIZE, 0, 96, 192);
 
     world->wall2 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall2, 16, -352, 32, 160);
+    init_sprite(world->wall2, 16 - 0.5 * METEORITE_SIZE, -352, 32, 160);
 
     world->wall3 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall3, 188, -352, 224, 160);
+    init_sprite(world->wall3, 188 - 1.5 * METEORITE_SIZE, -352, 224, 160);
 
     world->wall4 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall4, 48, -672, 96, 192);
+    init_sprite(world->wall4, 48 - 1.5 * METEORITE_SIZE, -672, 96, 192);
 
     world->wall5 = malloc(sizeof(sprite_t));
-    init_sprite(world->wall5, 252, -672, 96, 192);
+    init_sprite(world->wall5, 252 - 1.5 * METEORITE_SIZE, -672, 96, 192);
 }
 
 
@@ -81,13 +81,13 @@ void init_walls(world_t * world)
 /// @param textures  les textures du jeu
 void  init_textures(SDL_Renderer *renderer, resources_t *textures)
 {
-    const char *font_path;
-    font_path = "arial.ttf";
+    // const char *font_path;
+    // font_path = "arial.ttf";
     textures->background = load_image( "ressources/space-background.bmp", renderer);
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
-    textures->font = load_font(font_path, 14);
+    // textures->font = load_font(font_path, 14);
 }
 
 
@@ -100,7 +100,7 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, 
 {
     init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
-    init_ttf();
+    // init_ttf();
     init_textures(*renderer, textures);
     init_walls(world);
 }
