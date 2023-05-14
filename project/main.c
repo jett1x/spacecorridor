@@ -87,6 +87,22 @@ void  init_textures(SDL_Renderer *renderer, resources_t *textures)
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
+    textures->numbers[0] = load_image("ressources/text/0.bmp", renderer);
+    textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
+    textures->numbers[2] = load_image("ressources/text/2.bmp", renderer);
+    textures->numbers[3] = load_image("ressources/text/3.bmp", renderer);
+    textures->numbers[4] = load_image("ressources/text/4.bmp", renderer);
+    textures->numbers[5] = load_image("ressources/text/5.bmp", renderer);
+    textures->numbers[6] = load_image("ressources/text/6.bmp", renderer);
+    textures->numbers[7] = load_image("ressources/text/7.bmp", renderer);
+    textures->numbers[8] = load_image("ressources/text/8.bmp", renderer);
+    textures->numbers[9] = load_image("ressources/text/9.bmp", renderer);
+    textures->slow = load_image("ressources/text/slow.bmp", renderer);
+    textures->win = load_image("ressources/text/u_win.bmp", renderer);
+    textures->lose = load_image("ressources/text/loosr.bmp", renderer);
+    textures->time = load_image("ressources/text/ut_time.bmp", renderer);
+
+
     // textures->font = load_font(font_path, 14);
 }
 

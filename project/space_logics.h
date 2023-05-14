@@ -20,6 +20,11 @@ typedef struct resources_s
     SDL_Texture* ship;
     SDL_Texture* line;
     SDL_Texture* meteorite;
+    SDL_Texture* numbers[10];
+    SDL_Texture* win;
+    SDL_Texture* lose;
+    SDL_Texture* slow;
+    SDL_Texture* time;
     TTF_Font* font;
 } resources_t;
 
@@ -46,6 +51,11 @@ typedef struct world_s
     sprite_t * wall3;
     sprite_t * wall4;
     sprite_t * wall5;
+    sprite_t * numbers[10];
+    sprite_t * win;
+    sprite_t * lose;
+    sprite_t * slow;
+    sprite_t * time;
 } world_t;
 
 

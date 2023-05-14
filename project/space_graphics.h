@@ -54,6 +54,10 @@ void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world);
 void refresh_graphics(SDL_Renderer *renderer, world_t *world, resources_t *textures);
 
 
+void text_output_lose(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer);
+
+void text_output_win(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer);
+
 /// @brief          fonction qui nettoie le jeu: nettoyage de la partie graphique (SDL), nettoyage des textures, nettoyage des données
 /// @param window   la fenêtre du jeu
 /// @param renderer le renderer

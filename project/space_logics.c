@@ -64,6 +64,7 @@ void handle_walls_collision(world_t *world, SDL_Texture *ship)
         )
         {
             printf("You lost!\n");
+            text_output_lose(textures, world, ship, renderer);
         }
 }
 
@@ -73,6 +74,7 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
     if(handle_sprites_collision(world->ship, world->line, world, ship))
     {
         printf("You finished in %d seconds\n", (int)(SDL_GetTicks()/1000));
+        text_output_win();
     }
 }
 

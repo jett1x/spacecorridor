@@ -80,6 +80,21 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textur
 }
 
 
+void text_output_lose(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer)
+{
+    init_sprite(text->lose, 0, 0, 50, 50);
+    apply_sprite(renderer, text->lose, world->lose);
+}
+
+void text_output_win(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer)
+{
+    init_sprite(text->win, 0, 0 ,50 ,50);
+    init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) / 10], 10, 10, 50, 50);
+    init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) % 10], 10, 10, 50, 50);
+    apply_sprite(renderer, text->win, world->win);
+    apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) / 10], world->numbers[((int)(SDL_GetTicks()/1000)) / 10]);
+    apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) % 10], world->numbers[((int)(SDL_GetTicks()/1000)) % 10]);
+}
 void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, world_t * world){
     clean_data(world);
     clean_textures(textures);
