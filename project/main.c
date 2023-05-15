@@ -52,26 +52,6 @@ void init_data(world_t * world)
 }
 
 
-/// @brief          La fonction initialise les sprites de text
-/// @param world    les données du monde
-void init_text(world_t * world)
-{
-    world->lose = malloc(sizeof(sprite_t));
-    init_sprite(world->lose, (SCREEN_WIDTH-256)/2, (SCREEN_HEIGHT-52)/2, -1, -1);
-    world->win = malloc(sizeof(sprite_t));
-    init_sprite(world->win, (SCREEN_WIDTH-265)/2, SCREEN_HEIGHT/2-62, -1, -1);
-    world->time = malloc(sizeof(sprite_t));
-    init_sprite(world->time, (SCREEN_WIDTH-177)/2 - 26, SCREEN_HEIGHT/2, -1, -1);
-    for(size_t i = 0; i < 10; i++)
-    {
-        world->numbers[i] = malloc(sizeof(sprite_t));
-        init_sprite(world->numbers[i], (SCREEN_WIDTH+177)/2 - 20, SCREEN_HEIGHT/2, -1, -1);
-    }
-    world->slow = malloc(sizeof(sprite_t));
-    init_sprite(world->slow, (SCREEN_WIDTH+177)/2 - 20, SCREEN_HEIGHT/2, -1, -1);
-}
-
-
 /// @brief           La fonction initialise les murs
 /// @param world     les données du monde
 void init_walls(world_t * world)
@@ -107,7 +87,6 @@ void  init_textures(SDL_Renderer *renderer, resources_t *textures)
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
-
     textures->numbers[0] = load_image("ressources/text/0.bmp", renderer);
     textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
     textures->numbers[2] = load_image("ressources/text/2.bmp", renderer);
@@ -120,8 +99,8 @@ void  init_textures(SDL_Renderer *renderer, resources_t *textures)
     textures->numbers[9] = load_image("ressources/text/9.bmp", renderer);
     textures->slow = load_image("ressources/text/slow.bmp", renderer);
     textures->win = load_image("ressources/text/u_win.bmp", renderer);
-    textures->lose = load_image("ressources/text/loser.bmp", renderer);
-    textures->time = load_image("ressources/text/ur_time.bmp", renderer);
+    textures->lose = load_image("ressources/text/loosr.bmp", renderer);
+    textures->time = load_image("ressources/text/ut_time.bmp", renderer);
 
 
     // textures->font = load_font(font_path, 14);
@@ -140,7 +119,6 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, 
     // init_ttf();
     init_textures(*renderer, textures);
     init_walls(world);
-    init_text(world);
 }
 
 
@@ -160,16 +138,17 @@ int main( int argc, char* args[] )
         //gestion des évènements
         handle_events(&event,&world);
         
+        //mise à jour des données liée à la physique du monde
+        update_data(&world, &textures);
+        
         //rafraichissement de l'écran
         refresh_graphics(renderer,&world,&textures);
-
-        //mise à jour des données liée à la physique du monde
-        update_data(&world, &textures, renderer);
         
         // pause de 10 ms pour controler la vitesse de rafraichissement
         pause(10);
     }
-    pause(2000);
+    
+    pause(3000);
 
     //nettoyage final
     clean(window,renderer,&textures,&world);
