@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <SDL2/SDL_mixer.h>
 
 
 
@@ -121,6 +122,11 @@ int main( int argc, char* args[] )
     SDL_Renderer *renderer;
     SDL_Window *window;
 
+    SDL_Init(SDL_INIT_AUDIO);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    Mix_Music * backgroundmusic = Mix_LoadMUS("ressources/music/music_1.mp/3");
+    Mix_PlayMusic(backgroundmusic, -1);
+
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
@@ -142,6 +148,7 @@ int main( int argc, char* args[] )
     //nettoyage final
     clean(window,renderer,&textures,&world);
     
-    
+    Mix_FreeMusic(backgroundmusic);
+    Mix_CloseAudio();
     return 0;
 }
