@@ -96,38 +96,6 @@ void init_walls(world_t * world)
 }
 
 
-/// @brief           La fonction initialise les textures nécessaires à l'affichage graphique du jeu
-/// @param screen    la surface correspondant à l'écran de jeu
-/// @param textures  les textures du jeu
-void  init_textures(SDL_Renderer *renderer, resources_t *textures)
-{
-    // const char *font_path;
-    // font_path = "arial.ttf";
-    textures->background = load_image( "ressources/space-background.bmp", renderer);
-    textures->ship = load_image( "ressources/spaceship.bmp", renderer);
-    textures->line = load_image( "ressources/finish_line.bmp", renderer);
-    textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
-
-    textures->numbers[0] = load_image("ressources/text/0.bmp", renderer);
-    textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
-    textures->numbers[2] = load_image("ressources/text/2.bmp", renderer);
-    textures->numbers[3] = load_image("ressources/text/3.bmp", renderer);
-    textures->numbers[4] = load_image("ressources/text/4.bmp", renderer);
-    textures->numbers[5] = load_image("ressources/text/5.bmp", renderer);
-    textures->numbers[6] = load_image("ressources/text/6.bmp", renderer);
-    textures->numbers[7] = load_image("ressources/text/7.bmp", renderer);
-    textures->numbers[8] = load_image("ressources/text/8.bmp", renderer);
-    textures->numbers[9] = load_image("ressources/text/9.bmp", renderer);
-    textures->slow = load_image("ressources/text/slow.bmp", renderer);
-    textures->win = load_image("ressources/text/u_win.bmp", renderer);
-    textures->lose = load_image("ressources/text/loser.bmp", renderer);
-    textures->time = load_image("ressources/text/ur_time.bmp", renderer);
-
-
-    // textures->font = load_font(font_path, 14);
-}
-
-
 /// @brief           fonction qui initialise le jeu: initialisation de la partie graphique (SDL), chargement des textures, initialisation des données
 /// @param window    la fenêtre du jeu
 /// @param renderer  le renderer
@@ -137,7 +105,7 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, 
 {
     init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
-    // init_ttf();
+    init_ttf();
     init_textures(*renderer, textures);
     init_walls(world);
     init_text(world);

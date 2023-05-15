@@ -11,6 +11,12 @@
 #define SPACE_GRAPHICS_H
 
 
+/// @brief           La fonction initialise les textures nécessaires à l'affichage graphique du jeu
+/// @param screen    la surface correspondant à l'écran de jeu
+/// @param textures  les textures du jeu
+void  init_textures(SDL_Renderer *renderer, resources_t *textures);
+
+
 /// @brief          Writes to console all the data correspond to particular sprite
 /// @param sprite   a sprite you want to get information about
 void print_sprite(sprite_t *sprite);

@@ -2,13 +2,41 @@
 /// @author         SHCHERBA Denys, OSADTSIV Ivan
 /// @brief          File with methods responsible for game graphics
 
-#include "sdl2-light.h"
 #include "space_graphics.h"
-#include "space_logics.h"
-#include "sdl2-ttf-light.h"
 #include "space_const.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+
+
+void  init_textures(SDL_Renderer *renderer, resources_t *textures)
+{
+    const char *font_path;
+    font_path = "arial.ttf";
+
+    textures->background = load_image("ressources/space-background.bmp", renderer);
+    textures->ship = load_image("ressources/spaceship.bmp", renderer);
+    textures->line = load_image("ressources/finish_line.bmp", renderer);
+    textures->meteorite = load_image("ressources/meteorite.bmp", renderer);
+
+    textures->numbers[0] = load_image("ressources/text/0.bmp", renderer);
+    textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
+    textures->numbers[2] = load_image("ressources/text/2.bmp", renderer);
+    textures->numbers[3] = load_image("ressources/text/3.bmp", renderer);
+    textures->numbers[4] = load_image("ressources/text/4.bmp", renderer);
+    textures->numbers[5] = load_image("ressources/text/5.bmp", renderer);
+    textures->numbers[6] = load_image("ressources/text/6.bmp", renderer);
+    textures->numbers[7] = load_image("ressources/text/7.bmp", renderer);
+    textures->numbers[8] = load_image("ressources/text/8.bmp", renderer);
+    textures->numbers[9] = load_image("ressources/text/9.bmp", renderer);
+    textures->slow = load_image("ressources/text/slow.bmp", renderer);
+    textures->win = load_image("ressources/text/u_win.bmp", renderer);
+    textures->lose = load_image("ressources/text/loser.bmp", renderer);
+    textures->time = load_image("ressources/text/ur_time.bmp", renderer);
+
+    textures->font = load_font(font_path, 14);
+}
+
 
 void print_sprite(sprite_t *sprite)
 {
@@ -23,6 +51,7 @@ void clean_textures(resources_t *textures)
     clean_texture(textures->ship);
     clean_texture(textures->line);
     clean_texture(textures->meteorite);
+    clean_font(textures->font);
 }
 
 
@@ -60,6 +89,15 @@ void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world)
     apply_wall(renderer, texture, world->wall3);
     apply_wall(renderer, texture, world->wall4);
     apply_wall(renderer, texture, world->wall5);
+}
+
+
+void apply_timer(SDL_Renderer *renderer, TTF_Font *font)
+{
+    char *timer;
+    timer = malloc(4*sizeof(char));
+    sprintf(timer, "%d", ((int)(SDL_GetTicks()/1000)));
+    apply_text(renderer, 0, 0, 100, 100, timer, font);
 }
 
 
@@ -102,6 +140,8 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textur
     //apply_wall(renderer, textures->meteorite, world->wall);
     //application des murs des meteorites dans le renderer
     apply_walls(renderer, textures->meteorite, world);
+    //application le timer dans le renderer
+    apply_timer(renderer, textures->font);
     // on met à jour l'écran
     update_screen(renderer);
 }
