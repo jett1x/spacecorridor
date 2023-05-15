@@ -22,7 +22,6 @@ bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
 {
     if((abs(sp1->x + sp1->w/2 - sp2->x - sp2->w/2) <= (sp1->w + sp2->w)/2) && (abs(sp1->y + sp1->h/2 - sp2->y - sp2->h/2) <= (sp1->h + sp2->h)/2))
     {
-        printf("COLLISION\n");
         return 1;
     }
     else
@@ -45,26 +44,26 @@ bool handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_
 }
 
 
-void handle_walls_collision(world_t *world, SDL_Texture *ship)
+void handle_walls_collision(world_t *world, resources_t *textures, SDL_Renderer *renderer)
 {
     //handle_sprites_collision(world->ship, world->wall, world, textures->ship);
 
     if(
-        handle_sprites_collision(world->ship, world->wall0, world, ship)
+        handle_sprites_collision(world->ship, world->wall0, world, textures->ship)
         ||
-        handle_sprites_collision(world->ship, world->wall1, world, ship)
+        handle_sprites_collision(world->ship, world->wall1, world, textures->ship)
         ||
-        handle_sprites_collision(world->ship, world->wall2, world, ship)
+        handle_sprites_collision(world->ship, world->wall2, world, textures->ship)
         ||
-        handle_sprites_collision(world->ship, world->wall3, world, ship)
+        handle_sprites_collision(world->ship, world->wall3, world, textures->ship)
         ||
-        handle_sprites_collision(world->ship, world->wall4, world, ship)
+        handle_sprites_collision(world->ship, world->wall4, world, textures->ship)
         ||
-        handle_sprites_collision(world->ship, world->wall5, world, ship)
+        handle_sprites_collision(world->ship, world->wall5, world, textures->ship)
         )
         {
+            text_output_lose(textures, world, renderer);
             printf("You lost!\n");
-            text_output_lose(textures, world, ship, renderer);
         }
 }
 
@@ -74,7 +73,7 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
     if(handle_sprites_collision(world->ship, world->line, world, ship))
     {
         printf("You finished in %d seconds\n", (int)(SDL_GetTicks()/1000));
-        text_output_win();
+        //text_output_win();
     }
 }
 
@@ -90,13 +89,13 @@ void update_walls(world_t *world, resources_t *textures)
 }
 
 
-void update_data(world_t *world, resources_t *textures)
+void update_data(world_t *world, resources_t *textures, SDL_Renderer *renderer)
 {
     world->line->y += world->vy;
     //world->wall->y += world->vy;
     update_walls(world, textures);
 
-    handle_walls_collision(world, textures->ship);
+    handle_walls_collision(world, textures, renderer);
 
     handle_finish_line_collision(world, textures->ship);
 }

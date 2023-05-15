@@ -83,8 +83,9 @@ bool handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world, SDL_
 
 /// @brief          checks if ship collide with walls
 /// @param world    world
-/// @param ship     ship texture
-void handle_walls_collision(world_t *world, SDL_Texture *ship);
+/// @param textures textures
+/// @param renderer renderer
+void handle_walls_collision(world_t *world, resources_t *textures, SDL_Renderer *renderer);
 
 
 /// @brief          checks if ship reached the finish line
@@ -94,8 +95,10 @@ void handle_finish_line_collision(world_t *world, SDL_Texture *ship);
 
 
 /// @brief          La fonction met à jour les données en tenant compte de la physique du monde
-/// @param les      données du monde
-void update_data(world_t *world, resources_t *textures);
+/// @param world    données du monde
+/// @param textures textures
+/// @param renderer renderer
+void update_data(world_t *world, resources_t *textures, SDL_Renderer *renderer);
 
 
 /// @brief          La fonction nettoie les données du monde

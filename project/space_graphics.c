@@ -51,6 +51,7 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
     }
 }
 
+
 void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world)
 {   
     apply_wall(renderer, texture, world->wall0);
@@ -60,6 +61,14 @@ void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world)
     apply_wall(renderer, texture, world->wall4);
     apply_wall(renderer, texture, world->wall5);
 }
+
+
+void text_output_lose(resources_t * textures, world_t * world, SDL_Renderer *renderer)
+{
+    apply_sprite(renderer, textures->lose, world->lose);
+    update_screen(renderer);
+}
+
 
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textures){
     
@@ -80,21 +89,16 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,resources_t *textur
 }
 
 
-void text_output_lose(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer)
-{
-    init_sprite(text->lose, 0, 0, 50, 50);
-    apply_sprite(renderer, text->lose, world->lose);
-}
+// void text_output_win(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer)
+// {
+//     init_sprite(text->win, 0, 0 ,50 ,50);
+//     init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) / 10], 10, 10, 50, 50);
+//     init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) % 10], 10, 10, 50, 50);
+//     apply_sprite(renderer, text->win, world->win);
+//     apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) / 10], world->numbers[((int)(SDL_GetTicks()/1000)) / 10]);
+//     apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) % 10], world->numbers[((int)(SDL_GetTicks()/1000)) % 10]);
+// }
 
-void text_output_win(resources_t * text, world_t * world, SDL_Texture *ship, SDL_Renderer *renderer)
-{
-    init_sprite(text->win, 0, 0 ,50 ,50);
-    init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) / 10], 10, 10, 50, 50);
-    init_sprite(text->numbers[((int)(SDL_GetTicks()/1000)) % 10], 10, 10, 50, 50);
-    apply_sprite(renderer, text->win, world->win);
-    apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) / 10], world->numbers[((int)(SDL_GetTicks()/1000)) / 10]);
-    apply_sprite(renderer, text->numbers[((int)(SDL_GetTicks()/1000)) % 10], world->numbers[((int)(SDL_GetTicks()/1000)) % 10]);
-}
 void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, world_t * world){
     clean_data(world);
     clean_textures(textures);
