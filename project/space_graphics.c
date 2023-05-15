@@ -74,9 +74,16 @@ void text_output_win(resources_t * textures, world_t * world, SDL_Renderer *rend
 {
     apply_sprite(renderer, textures->win, world->win);
     apply_sprite(renderer, textures->time, world->time);
+    if((int)(SDL_GetTicks()/1000) < 99)
+    {
     apply_sprite(renderer, textures->numbers[((int)(SDL_GetTicks()/1000)) / 10], world->numbers[((int)(SDL_GetTicks()/1000)) / 10]);
     world->numbers[((int)(SDL_GetTicks()/1000)) % 10]->x += 25;
     apply_sprite(renderer, textures->numbers[((int)(SDL_GetTicks()/1000)) % 10], world->numbers[((int)(SDL_GetTicks()/1000)) % 10]);
+    }
+    else
+    {
+        apply_sprite(renderer, textures->slow, world->slow);
+    }
     update_screen(renderer);
 }
 
@@ -105,7 +112,3 @@ void clean(SDL_Window *window, SDL_Renderer * renderer, resources_t *textures, w
     clean_textures(textures);
     clean_sdl(renderer,window);
 }
-
-
-
-

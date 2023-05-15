@@ -67,6 +67,8 @@ void init_text(world_t * world)
         world->numbers[i] = malloc(sizeof(sprite_t));
         init_sprite(world->numbers[i], (SCREEN_WIDTH+177)/2 - 20, SCREEN_HEIGHT/2, -1, -1);
     }
+    world->slow = malloc(sizeof(sprite_t));
+    init_sprite(world->slow, (SCREEN_WIDTH+177)/2 - 20, SCREEN_HEIGHT/2, -1, -1);
 }
 
 
