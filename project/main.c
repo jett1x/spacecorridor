@@ -101,9 +101,9 @@ void init_walls(world_t * world)
 /// @param textures  les textures du jeu
 void  init_textures(SDL_Renderer *renderer, resources_t *textures)
 {
-    // const char *font_path;
+    const char *font_path;
     // font_path = "arial.ttf";
-    textures->background = load_image( "ressources/space-background.bmp", renderer);
+    // textures->background = load_image( "ressources/space-background.bmp", renderer);
     textures->ship = load_image( "ressources/spaceship.bmp", renderer);
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
