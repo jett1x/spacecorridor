@@ -58,6 +58,15 @@ void init_text(world_t * world)
 {
     world->lose = malloc(sizeof(sprite_t));
     init_sprite(world->lose, (SCREEN_WIDTH-256)/2, (SCREEN_HEIGHT-52)/2, -1, -1);
+    world->win = malloc(sizeof(sprite_t));
+    init_sprite(world->win, (SCREEN_WIDTH-265)/2, SCREEN_HEIGHT/2-62, -1, -1);
+    world->time = malloc(sizeof(sprite_t));
+    init_sprite(world->time, (SCREEN_WIDTH-177)/2 - 26, SCREEN_HEIGHT/2, -1, -1);
+    for(size_t i = 0; i < 10; i++)
+    {
+        world->numbers[i] = malloc(sizeof(sprite_t));
+        init_sprite(world->numbers[i], (SCREEN_WIDTH+177)/2 - 20, SCREEN_HEIGHT/2, -1, -1);
+    }
 }
 
 
@@ -97,8 +106,8 @@ void  init_textures(SDL_Renderer *renderer, resources_t *textures)
     textures->line = load_image( "ressources/finish_line.bmp", renderer);
     textures->meteorite = load_image( "ressources/meteorite.bmp", renderer);
 
-    textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
     textures->numbers[0] = load_image("ressources/text/0.bmp", renderer);
+    textures->numbers[1] = load_image("ressources/text/1.bmp", renderer);
     textures->numbers[2] = load_image("ressources/text/2.bmp", renderer);
     textures->numbers[3] = load_image("ressources/text/3.bmp", renderer);
     textures->numbers[4] = load_image("ressources/text/4.bmp", renderer);

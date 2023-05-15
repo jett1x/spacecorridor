@@ -63,17 +63,16 @@ void handle_walls_collision(world_t *world, resources_t *textures, SDL_Renderer 
         )
         {
             text_output_lose(textures, world, renderer);
-            printf("You lost!\n");
         }
 }
 
 
-void handle_finish_line_collision(world_t *world, SDL_Texture *ship)
+void handle_finish_line_collision(world_t *world, resources_t *textures, SDL_Renderer *renderer)
 {
-    if(handle_sprites_collision(world->ship, world->line, world, ship))
+    if(handle_sprites_collision(world->ship, world->line, world, textures->ship))
     {
         printf("You finished in %d seconds\n", (int)(SDL_GetTicks()/1000));
-        //text_output_win();
+        text_output_win(textures, world, renderer);
     }
 }
 
@@ -97,7 +96,7 @@ void update_data(world_t *world, resources_t *textures, SDL_Renderer *renderer)
 
     handle_walls_collision(world, textures, renderer);
 
-    handle_finish_line_collision(world, textures->ship);
+    handle_finish_line_collision(world, textures, renderer);
 }
 
 

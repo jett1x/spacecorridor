@@ -47,14 +47,17 @@ void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world);
 
 
-/// @brief 
-/// @param textures 
-/// @param world 
-/// @param renderer 
+/// @brief          function responsible for printing out on the screen "You lost" message
+/// @param textures game textures
+/// @param world    world data
+/// @param renderer renderer
 void text_output_lose(resources_t * textures, world_t * world, SDL_Renderer *renderer);
 
 
-
+/// @brief          function responsible for printing out on the screen "You win" message
+/// @param textures game textures
+/// @param world    world data
+/// @param renderer renderer
 void text_output_win(resources_t * textures, world_t * world, SDL_Renderer *renderer);
 
 

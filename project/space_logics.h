@@ -32,7 +32,7 @@ typedef struct resources_s
 typedef struct sprite_s
 {
     int x;
-    int y;
+    float y;
     int h;
     int w;
 } sprite_t;
@@ -90,8 +90,9 @@ void handle_walls_collision(world_t *world, resources_t *textures, SDL_Renderer 
 
 /// @brief          checks if ship reached the finish line
 /// @param world    world
-/// @param ship     ship texture
-void handle_finish_line_collision(world_t *world, SDL_Texture *ship);
+/// @param textures textures
+/// @param renderer renderer
+void handle_finish_line_collision(world_t *world, resources_t *textures, SDL_Renderer *renderer);
 
 
 /// @brief          La fonction met à jour les données en tenant compte de la physique du monde
