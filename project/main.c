@@ -57,7 +57,7 @@ void init_data(world_t * world)
 void init_text(world_t * world)
 {
     world->lose = malloc(sizeof(sprite_t));
-    init_sprite(world->lose, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, -1, -1);
+    init_sprite(world->lose, (SCREEN_WIDTH-256)/2, (SCREEN_HEIGHT-52)/2, -1, -1);
 }
 
 
