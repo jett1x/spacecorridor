@@ -65,6 +65,11 @@ typedef struct world_s
 int is_game_over(world_t *world);
 
 
+/// @brief          Writes to console all the data correspond to particular sprite
+/// @param sprite   a sprite you want to get information about
+void print_sprite(sprite_t *sprite);
+
+
 /// @brief          checks if sprites collide
 /// @param sp1      sprite 1
 /// @param sp2      sprite 2

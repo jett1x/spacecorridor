@@ -17,11 +17,6 @@
 void  init_textures(SDL_Renderer *renderer, resources_t *textures);
 
 
-/// @brief          Writes to console all the data correspond to particular sprite
-/// @param sprite   a sprite you want to get information about
-void print_sprite(sprite_t *sprite);
-
-
 /// @brief          La fonction nettoie les textures
 /// @param textures les textures
 void clean_textures(resources_t *textures);

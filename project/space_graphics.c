@@ -38,13 +38,6 @@ void  init_textures(SDL_Renderer *renderer, resources_t *textures)
 }
 
 
-void print_sprite(sprite_t *sprite)
-{
-    printf("Coordinates of sprite are X:%d Y:%d\n", sprite->x, sprite->y);
-    printf("The size of sprite is H:%d W:%d\n", sprite->h, sprite->w);
-}
-
-
 void clean_textures(resources_t *textures)
 {
     clean_texture(textures->background);

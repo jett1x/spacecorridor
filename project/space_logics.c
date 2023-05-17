@@ -14,6 +14,13 @@ int is_game_over(world_t *world)
 }
 
 
+void print_sprite(sprite_t *sprite)
+{
+    printf("Coordinates of sprite are X:%d Y:%f\n", sprite->x, sprite->y);
+    printf("The size of sprite is H:%d W:%d\n", sprite->h, sprite->w);
+}
+
+
 bool sprites_collide(sprite_t *sp1, sprite_t *sp2)
 {
     if((abs(sp1->x + sp1->w/2 - sp2->x - sp2->w/2) <= (sp1->w + sp2->w)/2) && (abs(sp1->y + sp1->h/2 - sp2->y - sp2->h/2) <= (sp1->h + sp2->h)/2))

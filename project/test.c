@@ -14,7 +14,7 @@
 /// @param y        y coordinate
 /// @param w        width
 /// @param h        heigth
-void init_sprite(sprite_t *sprite, int x, int y, int w, int h)
+void init_sprite(sprite_t *sprite, int x, float y, int w, int h)
 {
     sprite->x = x;
     sprite->y = y;
@@ -27,6 +27,7 @@ void test_init_sprite_param()
     sprite_t * test;
     int val1 = 1;
     int val2 = 50;
+    test = malloc(sizeof(sprite_t));
     init_sprite(test, val1, val1, val2, val2);
     print_sprite(test);
 }
@@ -34,7 +35,6 @@ void test_init_sprite_param()
  
 int main(int argc, char * argv[]) 
 {
-
     test_init_sprite_param();
     return 0;
 }
