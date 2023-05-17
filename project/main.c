@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <SDL2/SDL_mixer.h>
 
 
 
@@ -115,14 +116,23 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, 
 /// @brief           programme principal qui implémente la boucle du jeu
 int main( int argc, char* args[] )
 {
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 6, 4096);
+    Mix_Music * bgmsc = Mix_LoadMUS("ressources/music/music_1.wav");
+    Mix_PlayMusic(bgmsc, 0);
+
     SDL_Event event;
     world_t world;
     resources_t textures;
     SDL_Renderer *renderer;
     SDL_Window *window;
 
+    
+
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
+    Mix_PlayMusic(bgmsc, 0);
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
         
         //gestion des évènements
@@ -141,7 +151,14 @@ int main( int argc, char* args[] )
 
     //nettoyage final
     clean(window,renderer,&textures,&world);
-    
-    
+
+    if(Mix_PlayMusic(bgmsc, -1)==-1) {
+    printf("Mix_PlayMusic: %s\n", Mix_GetError());
+    // well, there's no music, but most games don't break without music...
+}
+    Mix_FreeMusic(bgmsc);
+    Mix_CloseAudio();
+    Mix_HaltMusic();
+    Mix_Quit();
     return 0;
 }
