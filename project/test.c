@@ -22,19 +22,25 @@ void init_sprite(sprite_t *sprite, int x, float y, int w, int h)
     sprite->h = h;
 }
 
-void test_init_sprite_param()
+void test_init_sprite_param(int x, int y, int w, int h)
 {
     sprite_t * test;
-    int val1 = 1;
-    int val2 = 50;
     test = malloc(sizeof(sprite_t));
-    init_sprite(test, val1, val1, val2, val2);
+    init_sprite(test, x, y, w, h);
     print_sprite(test);
+}
+
+void test_init_sprite()
+{
+    test_init_sprite_param(1, 1, 50, 50);
+    test_init_sprite_param(40, 32, 20, 51);
+    test_init_sprite_param(14, 18, 88, 30);
+    test_init_sprite_param(5, 4, 67, 54);
 }
 
  
 int main(int argc, char * argv[]) 
 {
-    test_init_sprite_param();
+    test_init_sprite();
     return 0;
 }
