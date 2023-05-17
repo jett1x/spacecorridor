@@ -1,3 +1,7 @@
+/// @file           test.c
+/// @author         SHCHERBA Denys, OSADTSIV Ivan
+/// @brief          file to test some important mechanics
+
 #include "sdl2-light.h"
 #include <stdio.h>
 

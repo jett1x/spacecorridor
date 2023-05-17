@@ -2,7 +2,7 @@
 /// @brief           Main file responsible for game functionality
 /// @author          Mathieu Constant, Denys SHCHERBA, Ivan OSADTSIV
 /// @version         1.0
-/// @date            10.04.2023
+/// @date            17.05.2023
 
 
 #include "sdl2-light.h"
@@ -97,13 +97,27 @@ void init_walls(world_t * world)
 }
 
 
+/// @brief          initialisation de music
+/// @param bgmsc    background music
+void init_music(Mix_Music * bgmsc)
+{
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 6, 4096);
+    bgmsc = Mix_LoadMUS("ressources/music/music_1.wav");
+    Mix_PlayMusic(bgmsc, 0);
+}
+
+
 /// @brief           fonction qui initialise le jeu: initialisation de la partie graphique (SDL), chargement des textures, initialisation des données
 /// @param window    la fenêtre du jeu
 /// @param renderer  le renderer
 /// @param textures  les textures
 /// @param world     le monde
-void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, world_t * world)
+/// @param bgmsc     background music
+void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, world_t *world, Mix_Music *bgmsc)
 {
+    init_music(bgmsc);
     init_sdl(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     init_data(world);
     init_ttf();
@@ -113,26 +127,30 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, resources_t *textures, 
 }
 
 
+/// @brief          close an open music file
+/// @param bgmsc    background music
+void clean_music(Mix_Music *bgmsc)
+{
+    Mix_FreeMusic(bgmsc);
+    Mix_CloseAudio();
+    Mix_HaltMusic();
+    Mix_Quit();
+}
+
+
 /// @brief           programme principal qui implémente la boucle du jeu
 int main( int argc, char* args[] )
 {
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-    Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 6, 4096);
-    Mix_Music * bgmsc = Mix_LoadMUS("ressources/music/music_1.wav");
-    Mix_PlayMusic(bgmsc, 0);
-
     SDL_Event event;
     world_t world;
     resources_t textures;
     SDL_Renderer *renderer;
     SDL_Window *window;
-
+    Mix_Music * bgmsc;
     
 
     //initialisation du jeu
-    init(&window,&renderer,&textures,&world);
-    Mix_PlayMusic(bgmsc, 0);
+    init(&window,&renderer,&textures,&world, bgmsc);
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
         
         //gestion des évènements
@@ -151,14 +169,6 @@ int main( int argc, char* args[] )
 
     //nettoyage final
     clean(window,renderer,&textures,&world);
-
-    if(Mix_PlayMusic(bgmsc, -1)==-1) {
-    printf("Mix_PlayMusic: %s\n", Mix_GetError());
-    // well, there's no music, but most games don't break without music...
-}
-    Mix_FreeMusic(bgmsc);
-    Mix_CloseAudio();
-    Mix_HaltMusic();
-    Mix_Quit();
+    clean_music(bgmsc);
     return 0;
 }

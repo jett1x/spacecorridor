@@ -1,6 +1,6 @@
 /// @file           space_graphics.h
 /// @author         SHCHERBA Denys, OSADTSIV Ivan
-/// @brief          File with classes and methods responsible for game graphics
+/// @brief          File with methods responsible for game graphics
 
 #include "sdl2-light.h"
 #include "space_logics.h"
@@ -41,10 +41,10 @@ void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite
 /// @param sprite   sprite to apply
 void apply_wall(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite);
 
-/// @brief          no
-/// @param renderer no
-/// @param texture  no
-/// @param sprite   no
+/// @brief          Applies all the walls
+/// @param renderer renderer
+/// @param texture  texture
+/// @param sprite   sprite to apply
 void apply_walls(SDL_Renderer *renderer, SDL_Texture *texture, world_t *world);
 
 

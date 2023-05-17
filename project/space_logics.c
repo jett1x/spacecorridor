@@ -5,7 +5,6 @@
 #include "space_logics.h"
 #include "space_const.h"
 #include "space_graphics.h"
-#include "sdl2-light.h"
 
 
 int is_game_over(world_t *world)
